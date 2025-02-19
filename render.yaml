@@ -35,5 +35,6 @@ services:
   - type: keyvalue
     name: nearn-redis-for-emails
     maxmemoryPolicy: noeviction
+    region: frankfurt
     ipAllowList: []
     plan: starter
