@@ -21,7 +21,7 @@ export async function processAddPayment(id: string) {
         tokenName: submission.listing.token,
         username: submission.user.username,
         amount: rewardAmount,
-        walletAddress: submission.user.walletAddress,
+        walletAddress: submission.user.publicKey,
       }),
     );
 
