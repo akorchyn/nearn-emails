@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { Salutation } from '../../components/salutation';
 import { UnsubscribeLine } from '../../components/unsubscribeLine';
+import { SUPPORT_EMAIL } from '../../constants/project';
 import { styles } from '../styles';
 
 interface Props {
@@ -31,11 +33,7 @@ export const VerifiedStatusTemplate = ({
         </p>
         <p style={styles.text}>Thanks for your patience!</p>
 
-        <p style={styles.salutation}>
-          Best,
-          <br />
-          Superteam Earn
-        </p>
+        <Salutation />
         <p style={styles.text}>&nbsp;</p>
         <UnsubscribeLine />
       </div>
@@ -55,17 +53,13 @@ export const VerifiedStatusTemplate = ({
         <p style={styles.text}>
           If you believe this decision was made in error, please don’t hesitate
           to contact us at{' '}
-          <a href="mailto:support@superteamearn.com" style={styles.link}>
-            support@superteamearn.com
+          <a href={`mailto:${SUPPORT_EMAIL}`} style={styles.link}>
+            {SUPPORT_EMAIL}
           </a>
           . We’re here to help.
         </p>
 
-        <p style={styles.salutation}>
-          Best,
-          <br />
-          Superteam Earn
-        </p>
+        <Salutation />
         <p style={styles.text}>&nbsp;</p>
         <UnsubscribeLine />
       </div>

@@ -2,7 +2,8 @@ import { render } from '@react-email/render';
 import dayjs from 'dayjs';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { SubmissionSponsorTemplate } from '../../email-templates/Submission/submissionSponsorTemplate';
 import { prisma } from '../../prisma';
 import { getUserEmailPreference } from '../../utils/getUserEmailPreference';
@@ -67,7 +68,7 @@ export async function processSponsorSubmissions() {
         SubmissionSponsorTemplate({
           name: pocUser.firstName!,
           listingName: listing.title,
-          link: `${basePath}/dashboard/listings/${listing.slug}/submissions/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+          link: `${basePath}/dashboard/listings/${listing.slug}/submissions/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
           submissionCount: submissionCount,
           listingLink: `${basePath}/listing/${listing.slug}`,
           listingType: listing.type,
@@ -75,7 +76,7 @@ export async function processSponsorSubmissions() {
       );
 
       const emailData = {
-        from: pratikEmail,
+        from: ceoEmail,
         to: pocUser.email,
         subject,
         html: emailHtml,

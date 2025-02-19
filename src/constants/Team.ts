@@ -1,62 +1,62 @@
 import { Regions } from '@prisma/client';
 
-export const Superteams = [
+export const Teams = [
   {
-    name: 'Superteam India',
+    name: 'India',
     region: Regions.INDIA,
     displayValue: 'India',
     country: ['India'],
   },
   {
-    name: 'Superteam Germany',
+    name: 'Germany',
     region: Regions.GERMANY,
     displayValue: 'Germany',
     country: ['Germany'],
   },
   {
-    name: 'Superteam UK',
+    name: 'UK',
     region: Regions.UK,
     displayValue: 'UK',
     country: ['United Kingdom'],
   },
   {
-    name: 'Superteam Turkey',
+    name: 'Turkey',
     region: Regions.TURKEY,
     displayValue: 'Turkey',
     country: ['Turkey'],
   },
   {
-    name: 'Superteam Vietnam',
+    name: 'Vietnam',
     region: Regions.VIETNAM,
     displayValue: 'Vietnam',
     country: ['Vietnam'],
   },
   {
-    name: 'Superteam UAE',
+    name: 'UAE',
     region: Regions.UAE,
     displayValue: 'UAE',
     country: ['United Arab Emirates'],
   },
   {
-    name: 'Superteam Nigeria',
+    name: 'Nigeria',
     region: Regions.NIGERIA,
     displayValue: 'Nigeria',
     country: ['Nigeria'],
   },
   {
-    name: 'Superteam Brazil',
+    name: 'Brazil',
     region: Regions.BRAZIL,
     displayValue: 'Brazil',
     country: ['Brazil'],
   },
   {
-    name: 'Superteam Malaysia',
+    name: 'Malaysia',
     region: Regions.MALAYSIA,
     displayValue: 'Malaysia',
     country: ['Malaysia'],
   },
   {
-    name: 'Superteam Balkan',
+    name: 'Balkan',
     region: Regions.BALKAN,
     displayValue: 'Balkan',
     country: [
@@ -73,25 +73,25 @@ export const Superteams = [
     ],
   },
   {
-    name: 'Superteam Philippines',
+    name: 'Philippines',
     region: Regions.PHILIPPINES,
     displayValue: 'Philippines',
     country: ['Philippines'],
   },
   {
-    name: 'Superteam Japan',
+    name: 'Japan',
     region: Regions.JAPAN,
     displayValue: 'Japan',
     country: ['Japan'],
   },
   {
-    name: 'Superteam France',
+    name: 'France',
     region: Regions.FRANCE,
     displayValue: 'France',
     country: ['France'],
   },
   {
-    name: 'Superteam Mexico',
+    name: 'Mexico',
     region: Regions.MEXICO,
     displayValue: 'Mexico',
     country: ['Mexico'],

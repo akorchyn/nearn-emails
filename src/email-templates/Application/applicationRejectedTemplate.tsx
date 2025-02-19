@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Salutation } from '../../components/salutation';
 import { UnsubscribeLine } from '../../components/unsubscribeLine';
 import { styles } from '../styles';
 
@@ -27,11 +28,7 @@ export const ApplicationRejectedTemplate = ({
         bounties and projects, and winning some along the way. All the best!
       </p>
 
-      <p style={styles.salutation}>
-        Best,
-        <br />
-        Superteam Earn
-      </p>
+      <Salutation />
       <UnsubscribeLine />
     </div>
   );

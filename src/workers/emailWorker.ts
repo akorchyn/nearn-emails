@@ -6,7 +6,8 @@ import { config } from 'dotenv';
 import { Resend } from 'resend';
 
 import { basePath } from '../constants/basePath';
-import { pratikEmail } from '../constants/emails';
+import { ceoEmail } from '../constants/emails';
+import { SUPPORT_EMAIL } from '../constants/project';
 import { AlertTemplate } from '../email-templates/Alert/AlertTemplate';
 import { redis } from '../utils/queue';
 
@@ -82,7 +83,7 @@ const emailWorker = new Worker(
         html: html.replace('{{unsubscribeUrl}}', unsubscribeURL),
         ...(bcc && { bcc }),
         ...(cc && { cc }),
-        replyTo: 'support@superteamearn.com',
+        replyTo: SUPPORT_EMAIL,
         headers: {
           'List-Unsubscribe': `<${unsubscribeURL}>`,
         },
@@ -100,8 +101,8 @@ const emailWorker = new Worker(
         console.error('Failed to send email:', error);
         if (process.env.SERVER_ENV === 'production') {
           await resend.emails.send({
-            from: pratikEmail,
-            to: ['abhwshek@gmail.com', 'pratik.dholani1@gmail.com'],
+            from: ceoEmail,
+            to: process.env.DEV_EMAILS?.split(',') || [],
             subject: 'Email Error',
             html: await render(
               AlertTemplate({

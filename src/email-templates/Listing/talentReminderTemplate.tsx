@@ -1,8 +1,10 @@
 import { type CompensationType } from '@prisma/client';
 import React from 'react';
 
+import { Salutation } from '../../components/salutation';
 import { UnsubscribeLine } from '../../components/unsubscribeLine';
 import { basePath } from '../../constants/basePath';
+import { PROJECT_NAME } from '../../constants/project';
 import { styles } from '../styles';
 
 interface Listing {
@@ -41,7 +43,7 @@ const ListingItem = ({ listing }: { listing: Listing }) => {
         <a
           href={`${basePath}/listing/${
             listing.slug || ''
-          }/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`}
+          }/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`}
           style={styles.link}
         >
           {listing.title}
@@ -52,7 +54,7 @@ const ListingItem = ({ listing }: { listing: Listing }) => {
   );
 };
 
-const link = `https://earn.superteam.fun/new/?utm_source=superteamearn&utm_medium=email&utm_campaign=profileconversion`;
+const link = `${process.env.MAIN_APP_URL}/new/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=profileconversion`;
 
 export const TalentReminderTemplate = ({
   name,
@@ -64,10 +66,10 @@ export const TalentReminderTemplate = ({
       <p style={styles.greetings}>{name ? 'Hello ' + name + ',' : 'Hello,'}</p>
       <p style={styles.textWithMargin}>
         Contributing to web3 projects is the most reliable way to earn in global
-        standards. Superteam Earn is the easiest way to do it!
+        standards. {PROJECT_NAME} is the easiest way to do it!
       </p>
       <p style={styles.textWithMargin}>
-        People like you have earned over {TVE} on Superteam Earn.
+        People like you have earned over {TVE} on {PROJECT_NAME}.
       </p>
       <p style={styles.textWithMargin}>
         Take the final step by completing your profile from{' '}
@@ -116,11 +118,7 @@ export const TalentReminderTemplate = ({
       >
         Complete Profile
       </a>
-      <p style={styles.salutation}>
-        Best,
-        <br />
-        Superteam Earn
-      </p>
+      <Salutation />
       <UnsubscribeLine />
     </div>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { Salutation } from '../../components/salutation';
 import { UnsubscribeLine } from '../../components/unsubscribeLine';
+import { PROJECT_NAME } from '../../constants/project';
 import { styles } from '../styles';
 
 interface ScoutReminderProps {
@@ -26,10 +28,11 @@ export const ScoutReminderTemplate = ({
     <div style={styles.container}>
       <p style={styles.greetings}>Hey {name},</p>
       <p style={styles.text}>
-        If you haven't tried Earn Scout yet for {type} {listingName}, {`you're`}{' '}
-        <strong>missing out on the best talent</strong> on Earn. This elite
-        group of users, handpicked for your {type}, has earned a total of $
-        {formatNumber(totalMatchedUSD)} from similar work on Earn!
+        If you haven't tried {PROJECT_NAME} Scout yet for {type} {listingName},{' '}
+        {`you're`} <strong>missing out on the best talent</strong> on{' '}
+        {PROJECT_NAME}. This elite group of users, handpicked for your {type},
+        has earned a total of ${formatNumber(totalMatchedUSD)} from similar work
+        on {PROJECT_NAME}!
       </p>
       <p style={styles.textWithMargin}>
         <a href={link} style={styles.link}>
@@ -39,11 +42,7 @@ export const ScoutReminderTemplate = ({
         invites left!
       </p>
 
-      <p style={styles.salutation}>
-        Best,
-        <br />
-        Superteam Earn
-      </p>
+      <Salutation />
       <p style={styles.text}>&nbsp;</p>
       <UnsubscribeLine />
     </div>

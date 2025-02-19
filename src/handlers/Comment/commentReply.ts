@@ -2,7 +2,8 @@ import { CommentRefType } from '@prisma/client';
 import { render } from '@react-email/render';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { CommentReplyTemplate } from '../../email-templates/Comment/commentReplyTemplate';
 import { prisma } from '../../prisma';
 import { getCommentSourceURL } from '../../utils/comment';
@@ -47,9 +48,9 @@ export async function processCommentReply(
     );
 
     const emailData = {
-      from: pratikEmail,
+      from: ceoEmail,
       to: user?.email,
-      subject: 'You have received a reply to your comment on Earn',
+      subject: `You have received a reply to your comment on ${PROJECT_NAME}`,
       html: emailHtml,
     };
     return emailData;

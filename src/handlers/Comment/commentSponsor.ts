@@ -1,7 +1,8 @@
 import { render } from '@react-email/render';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { CommentSponsorTemplate } from '../../email-templates/Comment/commentSponsorTemplate';
 import { prisma } from '../../prisma';
 import { getUserEmailPreference } from '../../utils/getUserEmailPreference';
@@ -28,14 +29,14 @@ export async function processCommentSponsor(id: string, userId: string) {
       CommentSponsorTemplate({
         name: pocUser.firstName!,
         listingName: listing.title,
-        link: `${basePath}/listing/${listing?.slug}/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+        link: `${basePath}/listing/${listing?.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),
     );
 
     const emailData = {
-      from: pratikEmail,
+      from: ceoEmail,
       to: pocUser.email,
-      subject: 'Comment Received on Your Superteam Earn Listing',
+      subject: `Comment Received on Your ${PROJECT_NAME} Listing`,
       html: emailHtml,
     };
     return emailData;

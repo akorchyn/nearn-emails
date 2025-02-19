@@ -1,7 +1,8 @@
 import { render } from '@react-email/render';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { ScoutInviteTemplate } from '../../email-templates/Listing/scoutInviteTemplate';
 import { prisma } from '../../prisma';
 import { getUserEmailPreference } from '../../utils/getUserEmailPreference';
@@ -40,12 +41,12 @@ export async function processScoutInvite(id: string, userId: string) {
         name: user.firstName!,
         listingName: listing.title,
         sponsorName: listing.sponsor.name,
-        link: `${basePath}/listing/${listing.slug}/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+        link: `${basePath}/listing/${listing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),
     );
 
     const emailData = {
-      from: pratikEmail,
+      from: ceoEmail,
       to: user.email,
       subject: `${listing.sponsor.name} Wants You to Submit to Their Latest Listing`,
       html: emailHtml,

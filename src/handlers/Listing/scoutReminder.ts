@@ -2,7 +2,8 @@ import { render } from '@react-email/render';
 import dayjs from 'dayjs';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { ScoutReminderTemplate } from '../../email-templates/Listing/scoutReminderTemplate';
 import { prisma } from '../../prisma';
 
@@ -77,7 +78,7 @@ export async function processScoutReminder() {
       const emailHtml = await render(
         ScoutReminderTemplate({
           name: listing.poc.firstName || '',
-          link: `${basePath}/dashboard/listings/${listing.slug}/submissions/?scout=1&utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+          link: `${basePath}/dashboard/listings/${listing.slug}/submissions/?scout=1&utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
           listingName: listing.title,
           type: listing.type,
           invitesLeft: listing.Scouts.length - listing._count.Scouts,
@@ -86,7 +87,7 @@ export async function processScoutReminder() {
       );
 
       return {
-        from: pratikEmail,
+        from: ceoEmail,
         to: listing.poc.email,
         subject: `Do you want better ${listing.type === 'project' ? 'applications' : 'submissions'} for your ${listing.type}?`,
         html: emailHtml,

@@ -1,8 +1,10 @@
 import { type CompensationType } from '@prisma/client';
 import React from 'react';
 
+import { Salutation } from '../../components/salutation';
 import { UnsubscribeLine } from '../../components/unsubscribeLine';
 import { basePath } from '../../constants/basePath';
+import { PROJECT_NAME } from '../../constants/project';
 import { getListingTypeLabel } from '../../utils/getListingTypeLabel';
 import { styles } from '../styles';
 
@@ -64,7 +66,7 @@ const ListingItem = ({ listing }: { listing: Listing }) => (
       <a
         href={`${basePath}/listing/${
           listing.slug || ''
-        }/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`}
+        }/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`}
         style={styles.link}
       >
         {listing.title}
@@ -129,11 +131,7 @@ export const WeeklyRoundupTemplate = ({
       <p style={styles.text}>
         Hope to see you participate in (and hopefully win!) some of these :)
       </p>
-      <p style={styles.salutation}>
-        Best,
-        <br />
-        Superteam Earn
-      </p>
+      <Salutation />
       <UnsubscribeLine />
     </div>
   );

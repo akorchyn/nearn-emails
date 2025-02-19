@@ -3,7 +3,8 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { DeadlineSponsorTemplate } from '../../email-templates/Deadline/deadlineSponsorTemplate';
 import { prisma } from '../../prisma';
 import { getUserEmailPreference } from '../../utils/getUserEmailPreference';
@@ -53,7 +54,7 @@ export async function processDeadlineExceeded() {
       DeadlineSponsorTemplate({
         name: listing.poc.firstName!,
         listingName: listing.title,
-        link: `${basePath}/dashboard/listings/${listing?.slug}/submissions/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+        link: `${basePath}/dashboard/listings/${listing?.slug}/submissions/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),
     );
 
@@ -65,10 +66,10 @@ export async function processDeadlineExceeded() {
     });
 
     emailData.push({
-      from: pratikEmail,
+      from: ceoEmail,
       to: listing.poc.email,
-      bcc: ['pratikd.earnings@gmail.com'],
-      subject: 'Your Earn Listing Is Ready to Be Reviewed',
+      bcc: process.env.BCC_EMAILS?.split(',') || [],
+      subject: `Your ${PROJECT_NAME} Listing Is Ready to Be Reviewed`,
       html: emailHtml,
     });
   }

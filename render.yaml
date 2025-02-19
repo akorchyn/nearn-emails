@@ -1,0 +1,39 @@
+services:
+  - type: worker
+    name: nearn-email
+    runtime: node
+    region: frankfurt
+    plan: starter
+    previews:
+      generation: off
+    buildCommand: pnpm install && pnpm prisma generate && pnpm build
+    startCommand: pnpm start
+    envVars:
+      - key: RESEND_API_KEY
+        sync: false
+      - key: UNSUB_SECRET
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: AUTH_SECRET
+        sync: false
+      - key: CEO_EMAIL
+        sync: false
+      - key: LISTINGS_EMAIL
+        value: noreply@nearn.io
+      - key: ALERTS_EMAIL
+        value: noreply@nearn.io
+      - key: MAIN_APP_URL
+        value: 'https://nearn.io'
+      - key: AIRTABLE_FORM_URL
+        value: 'https://nearn.io'
+      - key: DEV_EMAILS
+        sync: false
+      - key: BCC_EMAILS
+        sync: false
+    autoDeploy: true
+  - type: keyvalue
+    name: nearn-redis-for-emails
+    maxmemoryPolicy: noeviction
+    ipAllowList: []
+    plan: starter

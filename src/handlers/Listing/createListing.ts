@@ -3,8 +3,9 @@ import { render } from '@react-email/render';
 import dayjs from 'dayjs';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
-import { Superteams } from '../../constants/Superteam';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
+import { Teams } from '../../constants/Team';
 import { NewListingTemplate } from '../../email-templates/Listing/newListingTemplate';
 import { prisma } from '../../prisma';
 import {
@@ -95,10 +96,8 @@ export async function processCreateListing() {
       return;
     }
 
-    const superteam = Superteams.find(
-      (team) => team.region === selectedListing.region,
-    );
-    const countries = superteam ? superteam.country : [];
+    const team = Teams.find((team) => team.region === selectedListing.region);
+    const countries = team ? team.country : [];
 
     const listingSkills = selectedListing.skills as Skills;
     const listingMainSkills = listingSkills.map((skill) => skill.skills);
@@ -175,7 +174,7 @@ export async function processCreateListing() {
         const emailHtml = await render(
           NewListingTemplate({
             name: user.firstName!,
-            link: `${basePath}/listing/${selectedListing.slug}/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+            link: `${basePath}/listing/${selectedListing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
             listing: selectedListing,
           }),
         );
@@ -188,7 +187,7 @@ export async function processCreateListing() {
         }
 
         return {
-          from: pratikEmail,
+          from: ceoEmail,
           to: user.email,
           subject,
           html: emailHtml,

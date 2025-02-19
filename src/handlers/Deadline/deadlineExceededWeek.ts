@@ -3,7 +3,8 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { DeadlineExceededbyWeekTemplate } from '../../email-templates/Deadline/deadlineExceededbyWeekTemplate';
 import { prisma } from '../../prisma';
 import { getUserEmailPreference } from '../../utils/getUserEmailPreference';
@@ -54,7 +55,7 @@ export async function processDeadlineExceededWeek() {
       DeadlineExceededbyWeekTemplate({
         name: listing.poc.firstName!,
         listingName: listing.title,
-        link: `${basePath}/dashboard/listings/${listing?.slug}/submissions/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+        link: `${basePath}/dashboard/listings/${listing?.slug}/submissions/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),
     );
 
@@ -66,10 +67,10 @@ export async function processDeadlineExceededWeek() {
     });
 
     emailData.push({
-      from: pratikEmail,
+      from: ceoEmail,
       to: listing.poc.email,
-      bcc: ['pratikd.earnings@gmail.com'],
-      subject: 'Winner Announcement for Your Earn Bounty Is Due!',
+      bcc: process.env.BCC_EMAILS?.split(',') || [],
+      subject: `Winner Announcement for Your ${PROJECT_NAME} Bounty Is Due!`,
       html: emailHtml,
     });
   }

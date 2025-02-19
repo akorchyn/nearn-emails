@@ -2,8 +2,8 @@ import { Regions } from '@prisma/client';
 import { render } from '@react-email/render';
 import dayjs from 'dayjs';
 
-import { pratikEmail } from '../../constants/emails';
-import { Superteams } from '../../constants/Superteam';
+import { ceoEmail } from '../../constants/emails';
+import { Teams } from '../../constants/Team';
 import { WeeklyRoundupTemplate } from '../../email-templates/Listing/weeklyRoundupTemplate';
 import { prisma } from '../../prisma';
 import {
@@ -26,9 +26,9 @@ function userRegionEligibility(region: string, user: any) {
     return true;
   }
 
-  const superteam = Superteams.find((st) => st.region === region);
+  const team = Teams.find((st) => st.region === region);
 
-  return !!(user?.location && superteam?.country.includes(user?.location));
+  return !!(user?.location && team?.country.includes(user?.location));
 }
 
 export async function processWeeklyRoundup() {
@@ -170,7 +170,7 @@ export async function processWeeklyRoundup() {
     );
 
     emails.push({
-      from: pratikEmail,
+      from: ceoEmail,
       to: user.email,
       subject: 'Your Weekly Listing Roundup Is Here!',
       html: emailHtml,

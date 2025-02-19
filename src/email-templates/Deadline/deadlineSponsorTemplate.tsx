@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { Salutation } from '../../components/salutation';
 import { UnsubscribeLine } from '../../components/unsubscribeLine';
+import { PROJECT_NAME } from '../../constants/project';
 import { styles } from '../styles';
 
 interface TemplateProps {
@@ -20,7 +22,7 @@ export const DeadlineSponsorTemplate = ({
       <p style={styles.textWithMargin}>
         The deadline for your listing <strong>{listingName}</strong>
         &nbsp; has expired. Participants would be&nbsp;expecting&nbsp;you to
-        announce the winners on Superteam Earn within the next 5 days.
+        announce the winners on {PROJECT_NAME} within the next 5 days.
       </p>
       <p style={styles.textWithMargin}>
         <a href={link} style={styles.link}>
@@ -28,11 +30,7 @@ export const DeadlineSponsorTemplate = ({
         </a>{' '}
         to review&nbsp;the submissions. &nbsp;
       </p>
-      <p style={styles.salutation}>
-        Best,
-        <br />
-        Superteam Earn
-      </p>
+      <Salutation />
       <UnsubscribeLine />
     </div>
   );

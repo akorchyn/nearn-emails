@@ -1,6 +1,6 @@
 import { render } from '@react-email/render';
 
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
 import { PaymentReceivedTemplate } from '../../email-templates/Winners/paymentReceivedTemplate';
 import { prisma } from '../../prisma';
 
@@ -21,11 +21,12 @@ export async function processAddPayment(id: string) {
         tokenName: submission.listing.token,
         username: submission.user.username,
         amount: rewardAmount,
+        walletAddress: submission.user.walletAddress,
       }),
     );
 
     const emailData = {
-      from: pratikEmail,
+      from: ceoEmail,
       to: submission?.user.email,
       subject: `Payment Confirmation for ${submission.listing.title}`,
       html: emailHtml,

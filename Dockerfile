@@ -1,6 +1,6 @@
 FROM node:20 as builder
 
-WORKDIR /earn-emails
+WORKDIR /nearn-emails
 
 RUN npm install -g pnpm
 

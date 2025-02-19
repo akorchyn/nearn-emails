@@ -1,7 +1,8 @@
 import { render } from '@react-email/render';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { VerifiedStatusTemplate } from '../../email-templates/Listing/verifiedStatusTemplate';
 import { prisma } from '../../prisma';
 
@@ -31,7 +32,7 @@ export async function processVerifiedStatus(
     name: listing.poc.firstName!,
     listingName: listing.title,
     listingType: listing.type,
-    link: `${basePath}/listing/${listing.slug}/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+    link: `${basePath}/listing/${listing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
     decision,
   });
 
@@ -43,10 +44,10 @@ export async function processVerifiedStatus(
 
   const subject =
     decision === 'approve'
-      ? 'Your Earn listing has been verified and published'
-      : 'Your Earn listing could not be published';
+      ? `Your ${PROJECT_NAME} listing has been verified and published`
+      : `Your ${PROJECT_NAME} listing could not be published`;
   const emailData = {
-    from: pratikEmail,
+    from: ceoEmail,
     to: listing.poc.email,
     subject,
     html: emailHtml,

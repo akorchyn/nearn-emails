@@ -1,6 +1,6 @@
 import { render } from '@react-email/render';
 
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
 import { NonSTWinnersTemplate } from '../../email-templates/Winners/nonSTWinnersTemplate';
 import { prisma } from '../../prisma';
 import { getListingTypeLabel } from '../../utils/getListingTypeLabel';
@@ -88,7 +88,7 @@ export async function processNonSTWinners(id: string) {
       );
 
       emails.push({
-        from: pratikEmail,
+        from: ceoEmail,
         to: winner.user.email,
         subject: `Congratulations! ${sponsorName} will send you the rewards soon`,
         html: emailHtml,

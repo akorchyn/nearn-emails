@@ -1,7 +1,8 @@
 import { render } from '@react-email/render';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { WinnersAnnouncedTemplate } from '../../email-templates/Winners/winnersAnnouncedTemplate';
 import { prisma } from '../../prisma';
 import { getListingTypeLabel } from '../../utils/getListingTypeLabel';
@@ -64,11 +65,11 @@ export async function processAnnounceWinners(id: string) {
           listingName: listing?.title || '',
           link: `${basePath}/listing/${
             listing?.slug || ''
-          }/?utm_source=superteamearn&utm_medium=email&utm_campaign=winnerannouncement`,
+          }/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=winnerannouncement`,
         }),
       );
       return {
-        from: pratikEmail,
+        from: ceoEmail,
         to: user.email,
         subject: `${listingTypeLabel} Winners Announced!`,
         html: emailHtml,

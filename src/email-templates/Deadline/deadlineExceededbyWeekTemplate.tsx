@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { Salutation } from '../../components/salutation';
 import { UnsubscribeLine } from '../../components/unsubscribeLine';
+import { PROJECT_NAME, SUPPORT_EMAIL } from '../../constants/project';
 import { styles } from '../styles';
 
 interface TemplateProps {
@@ -20,7 +22,7 @@ export const DeadlineExceededbyWeekTemplate = ({
       <p style={styles.textWithMargin}>
         It has been 7 days since the <strong>{listingName}</strong> listing
         expired. Participants would be expecting the results to be out soon —
-        request you to publish the winners on Earn ASAP!
+        request you to publish the winners on {PROJECT_NAME} ASAP!
       </p>
       <p style={styles.textWithMargin}>
         <a href={link} style={styles.link}>
@@ -31,16 +33,12 @@ export const DeadlineExceededbyWeekTemplate = ({
 
       <p style={styles.textWithMargin}>
         Reach out to us on{' '}
-        <a href="https://t.me/pratikdholani/" style={styles.link}>
-          Telegram
+        <a href={`mailto:${SUPPORT_EMAIL}`} style={styles.link}>
+          {SUPPORT_EMAIL}
         </a>{' '}
         in case you need help.
       </p>
-      <p style={styles.salutation}>
-        Best,
-        <br />
-        Superteam Earn
-      </p>
+      <Salutation />
       <UnsubscribeLine />
     </div>
   );

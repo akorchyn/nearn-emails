@@ -1,7 +1,7 @@
 import { render } from '@react-email/render';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
 import { ApplicationCompletedTemplate } from '../../email-templates/Application/applicationCompletedTemplate';
 import { prisma } from '../../prisma';
 
@@ -43,7 +43,7 @@ export async function processApplicationCompleted(id: string, userId: string) {
     }),
   );
   const emailData = {
-    from: pratikEmail,
+    from: ceoEmail,
     to: application?.user.email,
     subject: 'You can now apply for this grant again',
     html: emailHtml,

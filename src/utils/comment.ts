@@ -1,5 +1,6 @@
 import { type Bounties, type CommentRefType } from '@prisma/client';
 
+import { PROJECT_NAME } from '../constants/project';
 import { getFeedURLType } from './feed';
 
 export function getCommentSourceURL(
@@ -16,7 +17,7 @@ export function getCommentSourceURL(
     url.searchParams.set('type', getFeedURLType(type) || 'error');
     url.searchParams.set('id', id);
   }
-  url.searchParams.set('utm_source', 'superteamearn');
+  url.searchParams.set('utm_source', PROJECT_NAME);
   url.searchParams.set('utm_medium', 'email');
   url.searchParams.set('utm_campaign', 'notifications');
   return url;

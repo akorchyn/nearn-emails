@@ -3,7 +3,8 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { DeadlineThreeDaysTemplate } from '../../email-templates/Deadline/deadline3dayTemplate';
 import { prisma } from '../../prisma';
 
@@ -52,12 +53,12 @@ export async function processDeadlineThreeDays() {
         DeadlineThreeDaysTemplate({
           name: sub?.User?.firstName!,
           listingName: listing.title,
-          link: `${basePath}/listing/${listing.slug}/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+          link: `${basePath}/listing/${listing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
         }),
       );
 
       emails.push({
-        from: pratikEmail,
+        from: ceoEmail,
         to: sub?.User?.email,
         subject: 'This Listing Is Expiring Soon!',
         html: emailHtml,

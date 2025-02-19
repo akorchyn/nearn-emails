@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { basePath } from '../constants/basePath';
+import { PROJECT_NAME } from '../constants/project';
 
 export const UnsubscribeLine = () => {
   return (
@@ -11,14 +12,14 @@ export const UnsubscribeLine = () => {
       >
         Click here
       </a>{' '}
-      to update your email preferences on Earn (recommended) or{' '}
+      to update your email preferences on {PROJECT_NAME} (recommended) or{' '}
       <a
         href="{{unsubscribeUrl}}"
         style={{ fontSize: '11px', color: '#007BFF' }}
       >
         click here
       </a>{' '}
-      to unsubscribe from all future emails from Superteam Earn
+      to unsubscribe from all future emails from {PROJECT_NAME}
     </p>
   );
 };

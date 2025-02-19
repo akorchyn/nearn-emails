@@ -2,7 +2,8 @@ import { render } from '@react-email/render';
 import dayjs from 'dayjs';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { PoWLikeTemplate } from '../../email-templates/PoW/powLike';
 import { prisma } from '../../prisma';
 import { getUserEmailPreference } from '../../utils/getUserEmailPreference';
@@ -60,12 +61,12 @@ export async function processPoWLike() {
         name: proofOfWork.user.firstName!,
         powName: proofOfWork.title,
         newLikesCount,
-        feedLink: `${basePath}/feed?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+        feedLink: `${basePath}/feed?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),
     );
 
     return {
-      from: pratikEmail,
+      from: ceoEmail,
       to: proofOfWork.user.email,
       subject: `${newLikesCount} New ${newLikesCount === 1 ? 'Like' : 'Likes'} on Your Personal Project!`,
       html: emailHtml,

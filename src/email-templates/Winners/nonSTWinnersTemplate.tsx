@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { Salutation } from '../../components/salutation';
 import { UnsubscribeLine } from '../../components/unsubscribeLine';
+import { PROJECT_NAME } from '../../constants/project';
 import { styles } from '../styles';
 
 interface TemplateProps {
@@ -45,11 +47,11 @@ export const NonSTWinnersTemplate = ({
         Congrats on winning the <strong>{listingName}</strong> {listingType}!
       </p>
       <p style={styles.text}>
-        {sponsorName} will be sending your reward directly into your Earn
-        wallet. No action is needed from your end. If you need to contact the
-        sponsor, you can do so from{' '}
+        {sponsorName} will be sending your reward directly into your wallet. No
+        action is needed from your end. If you need to contact the sponsor, you
+        can do so from{' '}
         <a
-          href={`${pocSocials}/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`}
+          href={`${pocSocials}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`}
           style={styles.link}
         >
           here
@@ -61,11 +63,7 @@ export const NonSTWinnersTemplate = ({
         your leaderboard position has jumped to {position}
         {suffix} position! We hope you continue winning :)
       </p>
-      <p style={styles.salutation}>
-        Best,
-        <br />
-        Superteam Earn
-      </p>
+      <Salutation />
       <UnsubscribeLine />
     </div>
   );

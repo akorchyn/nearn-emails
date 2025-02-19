@@ -1,7 +1,8 @@
 import { render } from '@react-email/render';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { DeadlineExtendedTemplate } from '../../email-templates/Deadline/deadlineExtendedTemplate';
 import { prisma } from '../../prisma';
 
@@ -58,11 +59,11 @@ export async function processDeadlineExtended(id: string) {
       const emailHtml = await render(
         DeadlineExtendedTemplate({
           listingName: listing.title,
-          link: `${basePath}/listing/${listing.slug}/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+          link: `${basePath}/listing/${listing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
         }),
       );
       return {
-        from: pratikEmail,
+        from: ceoEmail,
         to: user.email,
         subject: 'Listing Deadline Extended!',
         html: emailHtml,

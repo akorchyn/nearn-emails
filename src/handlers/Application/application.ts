@@ -1,7 +1,8 @@
 import { render } from '@react-email/render';
 
 import { basePath } from '../../constants/basePath';
-import { pratikEmail } from '../../constants/emails';
+import { ceoEmail } from '../../constants/emails';
+import { PROJECT_NAME } from '../../constants/project';
 import { ApplicationSponsorTemplate } from '../../email-templates/Application/applicationSponsorTemplate';
 import { ApplicationTemplate } from '../../email-templates/Application/applicationTemplate';
 import { prisma } from '../../prisma';
@@ -50,12 +51,12 @@ export async function processApplication(id: string, userId: string) {
         name: grantApplication?.grant?.poc?.firstName!,
         applicationTitle: grantApplication.projectTitle,
         grantName: grantApplication.grant.title,
-        link: `${basePath}/dashboard/grants/${grantApplication.grant.slug}/applications/?utm_source=superteamearn&utm_medium=email&utm_campaign=notifications`,
+        link: `${basePath}/dashboard/grants/${grantApplication.grant.slug}/applications/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),
     );
 
     emailData.push({
-      from: pratikEmail,
+      from: ceoEmail,
       to: grantApplication?.grant?.poc?.email,
       subject: 'New Grant Application Received',
       html: sponsorEmailHtml,
@@ -74,7 +75,7 @@ export async function processApplication(id: string, userId: string) {
   );
 
   emailData.push({
-    from: pratikEmail,
+    from: ceoEmail,
     to: user.email,
     subject: `${sponsorName} Has Received Your Grant Application`,
     html: talentEmailHtml,
