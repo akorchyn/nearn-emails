@@ -71,7 +71,8 @@ const ListingItem = ({ listing }: { listing: Listing }) => (
       >
         {listing.title}
       </a>{' '}
-      by {listing.sponsor} ({getReward(listing)} {listing.token}{' '}
+      by {listing.sponsor} ({getReward(listing)}{' '}
+      {listing.token === 'Any' ? 'in any token' : listing.token}{' '}
       {getListingTypeLabel(listing.type)})
     </div>
   </li>

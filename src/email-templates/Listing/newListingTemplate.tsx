@@ -38,7 +38,7 @@ export const NewListingTemplate = ({
         {listing.sponsor.name} just posted a new {listingType} called{' '}
         <a href={link} style={styles.link}>
           {listing.title} ({listing.rewardAmount?.toLocaleString()}{' '}
-          {listing.token})
+          {listing.token === 'Any' ? '' : listing.token})
         </a>{' '}
         that looks like a great match for your skills! Have a quick look at the
         scope of the {listingType} and make sure to {submitOrApply} before the

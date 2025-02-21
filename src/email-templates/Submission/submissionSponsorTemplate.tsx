@@ -10,7 +10,7 @@ interface TemplateProps {
   link: string;
   submissionCount: number;
   listingLink: string;
-  listingType: 'bounty' | 'project' | 'hackathon';
+  listingType: 'bounty' | 'project' | 'hackathon' | 'sponsorship';
 }
 
 export const SubmissionSponsorTemplate = ({
@@ -25,6 +25,10 @@ export const SubmissionSponsorTemplate = ({
   const projectNote =
     listingType === 'project'
       ? 'Additionally, you can reject applications before announcing the winner as well.'
+      : '';
+  const sponsorshipNote =
+    listingType === 'sponsorship'
+      ? 'Additionally, you can reject and approve applications before announcing the winner as well.'
       : '';
 
   return (
@@ -43,7 +47,7 @@ export const SubmissionSponsorTemplate = ({
         </a>{' '}
         to review them from your dashboard. You can also add submission labels
         and notes to these {word} right now, to announce winners swiftly later.{' '}
-        {projectNote}
+        {projectNote} {sponsorshipNote}
       </p>
       <Salutation />
       <UnsubscribeLine />
