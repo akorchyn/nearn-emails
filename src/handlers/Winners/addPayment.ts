@@ -14,17 +14,16 @@ export async function processAddPayment(id: string) {
     const winnerPosition = submission.winnerPosition;
 
     const rewardAmount = (submission?.listing?.rewards as any)[winnerPosition!];
+    const isUSDbased = submission.listing.token === 'Any';
 
     const emailHtml = await render(
       PaymentReceivedTemplate({
         name: submission.user.firstName!,
-        tokenName:
-          submission.listing.token === 'Any'
-            ? submission.token
-            : submission.listing.token,
+        tokenName: isUSDbased ? submission.token : submission.listing.token,
         username: submission.user.username,
         amount: rewardAmount,
         walletAddress: submission.user.publicKey,
+        isUSDbased,
       }),
     );
 
