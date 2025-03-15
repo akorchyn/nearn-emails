@@ -31,14 +31,16 @@ export const NewListingTemplate = ({
 }: NewListingProps) => {
   const listingType = getListingTypeLabel(listing.type);
   const submitOrApply = listing.type === 'project' ? 'apply' : 'submit';
+  const isUSDbased = listing.token === 'Any';
+  const reward = listing.rewardAmount?.toLocaleString();
+  const rewardText = reward ? reward + ' ' : '';
   return (
     <div style={styles.container}>
       <p style={styles.greetings}>Hey {name},</p>
       <p style={styles.textWithMargin}>
         {listing.sponsor.name} just posted a new {listingType} called{' '}
         <a href={link} style={styles.link}>
-          {listing.title} ({listing.rewardAmount?.toLocaleString()}{' '}
-          {listing.token === 'Any' ? '' : listing.token})
+          {listing.title} ({rewardText} {isUSDbased ? 'Any Token' : listing.token})
         </a>{' '}
         that looks like a great match for your skills! Have a quick look at the
         scope of the {listingType} and make sure to {submitOrApply} before the
