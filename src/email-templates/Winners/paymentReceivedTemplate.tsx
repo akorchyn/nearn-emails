@@ -12,6 +12,7 @@ interface TemplateProps {
   tokenName: string | null;
   walletAddress: string | null;
   username: string | null;
+  isUSDbased: boolean;
 }
 
 export const PaymentReceivedTemplate = ({
@@ -20,6 +21,7 @@ export const PaymentReceivedTemplate = ({
   tokenName,
   walletAddress,
   username,
+  isUSDbased,
 }: TemplateProps) => {
   return (
     <div style={styles.container}>
@@ -27,7 +29,8 @@ export const PaymentReceivedTemplate = ({
       <p style={styles.textWithMargin}>
         Do you know what just happened?! You just managed to turn your talent
         into some glorious crypto. Check your wallet — you should&apos;ve
-        received {amount} {tokenName} in your wallet address {walletAddress}.
+        received {isUSDbased && '$'}{amount} {isUSDbased && 'paid in '}
+        {tokenName} in your wallet address {walletAddress}.
         This isn&apos;t just a win; it&apos;s a testament to your talent and
         hard work.
       </p>
