@@ -25,25 +25,26 @@ export const PaymentReceivedTemplate = ({
 }: TemplateProps) => {
   return (
     <div style={styles.container}>
-      <p style={styles.greetings}>Hey {name},</p>
+      <p style={styles.greetings}>Hello {name},</p>
       <p style={styles.textWithMargin}>
-        Do you know what just happened?! You just managed to turn your talent
-        into some glorious crypto. Check your wallet — you should&apos;ve
-        received {isUSDbased && '$'}{amount} {isUSDbased && 'paid in '}
-        {tokenName} in your wallet address {walletAddress}.
-        This isn&apos;t just a win; it&apos;s a testament to your talent and
-        hard work.
+        Congratulations! Your hard work has paid off. We're pleased to inform
+        you that {isUSDbased && '$'}
+        {amount} {isUSDbased && 'paid in '}
+        {tokenName} has been processed and transferred to your account (
+        {walletAddress}). This payment reflects the quality of your work and
+        your valuable contribution.
       </p>
       <p style={styles.textWithMargin}>
-        Also, we bet your network would love to hear about your success. Why not
-        take a moment to admire the win on your profile and share it on Twitter?{' '}
+        We encourage you to share your accomplishment with your professional
+        network. You can view your achievement on your profile and share it on
+        social media.{' '}
         <a
           href={`${basePath}/t/${username}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`}
           style={styles.link}
         >
-          Click here
+          View your profile here
         </a>{' '}
-        to check it out, and tell the world about it!
+        to learn more.
       </p>
       <Salutation />
       <UnsubscribeLine />
