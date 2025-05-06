@@ -11,7 +11,6 @@ interface TemplateProps {
   listingType: string;
   sponsorName: string;
   totalEarnings: number;
-  position: number;
   pocSocials: string | null;
 }
 
@@ -21,18 +20,8 @@ export const NonSTWinnersTemplate = ({
   listingType,
   sponsorName,
   totalEarnings,
-  position,
   pocSocials,
 }: TemplateProps) => {
-  const suffix =
-    position === 1
-      ? 'st'
-      : position === 2
-        ? 'nd'
-        : position === 3
-          ? 'rd'
-          : 'th';
-
   const formattedEarnings = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -44,7 +33,8 @@ export const NonSTWinnersTemplate = ({
     <div style={styles.container}>
       <p style={styles.greetings}>Hey {name},</p>
       <p style={styles.textWithMargin}>
-        Congrats on winning the <strong>{listingName}</strong> {listingType}!
+        Congrats your submission is approved for the{' '}
+        <strong>{listingName}</strong> {listingType}!
       </p>
       <p style={styles.text}>
         {sponsorName} will be sending your reward directly into your wallet. No
@@ -59,9 +49,9 @@ export const NonSTWinnersTemplate = ({
         .
       </p>
       <p style={styles.textWithMargin}>
-        With this win, your earnings have increased to {formattedEarnings} and
-        your leaderboard position has jumped to {position}
-        {suffix} position! We hope you continue winning :)
+        With this approval, your total earnings have increased to{' '}
+        {formattedEarnings}. We hope you keep pushing and receive more
+        approvals!
       </p>
       <Salutation />
       <UnsubscribeLine />

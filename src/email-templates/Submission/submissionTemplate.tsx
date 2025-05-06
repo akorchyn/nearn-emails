@@ -7,7 +7,7 @@ import { styles } from '../styles';
 interface SubmissionProps {
   name: string;
   listingName: string;
-  type: 'bounty' | 'project' | 'hackathon';
+  type: 'bounty' | 'project' | 'hackathon' | 'sponsorship';
 }
 
 export const SubmissionTemplate = ({
@@ -15,37 +15,58 @@ export const SubmissionTemplate = ({
   listingName,
   type,
 }: SubmissionProps) => {
-  const isProject = type === 'project';
+  let node;
+  switch (type) {
+    case 'project':
+      node = (
+        <>
+          <p style={styles.textWithMargin}>
+            Thank you for your submission! Your application for{' '}
+            <strong>{listingName}</strong> has been successfully received.
+            Congratulations on completing this milestone.
+          </p>
+          <p style={styles.textWithMargin}>
+            The sponsor will review all applications in due course. We'll notify
+            you by email when the selection process is complete and results are
+            announced.
+          </p>
+        </>
+      );
+      break;
+    case 'bounty':
+      node = (
+        <>
+          <p style={styles.textWithMargin}>
+            Thank you for your submission! Your entry for{' '}
+            <strong>{listingName}</strong> has been successfully received.
+            Congratulations on completing this milestone.
+          </p>
+          <p style={styles.textWithMargin}>
+            Once the deadline passes, all submissions will be visible on the
+            listing page. We'll notify you by email when the selection process
+            is complete and results are announced.
+          </p>
+        </>
+      );
+    case 'sponsorship':
+      node = (
+        <>
+          <p style={styles.textWithMargin}>
+            Thank you for your submission! Your entry for{' '}
+            <strong>{listingName}</strong> has been successfully received.
+            Congratulations on completing this milestone.
+          </p>
+          <p style={styles.textWithMargin}>
+            The sponsor will review all applications. We'll notify you by email
+            when the sponsor approves or rejects your submission.
+          </p>
+        </>
+      );
+  }
   return (
     <div style={styles.container}>
-      <p style={styles.greetings}>Hey {name},</p>
-      {isProject ? (
-        <>
-          <p style={styles.textWithMargin}>
-            Nice work! Your application for <strong>{listingName}</strong> has
-            been received. Pour yourself a glass of something tasty —
-            you&apos;ve earned it 🥳
-          </p>
-          <p style={styles.textWithMargin}>
-            The sponsor will soon review all other applications. We’ll then send
-            you an email when the winners (hopefully including you) are
-            announced!
-          </p>
-        </>
-      ) : (
-        <>
-          <p style={styles.textWithMargin}>
-            Nice work! Your submission for <strong>{listingName}</strong> has
-            been received. Pour yourself a glass of something tasty &mdash;
-            you&rsquo;ve earned it 🥳
-          </p>
-          <p style={styles.textWithMargin}>
-            Once the deadline passes, you&rsquo;ll be able to see all the other
-            submissions on the listing page. We&rsquo;ll then send you an email
-            once the winners (hopefully including you) are announced!
-          </p>
-        </>
-      )}
+      <p style={styles.greetings}>Hello {name},</p>
+      {node}
       <Salutation />
       <UnsubscribeLine />
     </div>

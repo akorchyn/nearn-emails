@@ -19,13 +19,13 @@ export const WinnersAnnouncedTemplate = ({
     <div style={styles.container}>
       <p style={styles.greetings}>Hey {name},</p>
       <p style={styles.textWithMargin}>
-        The winners for the <strong>{listingName}</strong> listing have been
-        announced!{' '}
+        The recipients for the <strong>{listingName}</strong> opportunity have
+        been selected!{' '}
         <p style={styles.text}>
           <a href={link} style={styles.link}>
             Click here
           </a>{' '}
-          to see who claimed the top spots.
+          to see the results.
         </p>
       </p>
       <Salutation />

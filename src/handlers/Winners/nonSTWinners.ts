@@ -29,6 +29,7 @@ export async function processNonSTWinners(id: string) {
               listing: {
                 select: {
                   isWinnersAnnounced: true,
+                  type: true,
                 },
               },
             },
@@ -49,16 +50,13 @@ export async function processNonSTWinners(id: string) {
     const listingType = getListingTypeLabel(listing.type);
     const listingName = listing.title;
 
-    const allRankings = await prisma.talentRankings.findMany({
-      where: { skill: 'ALL', timeframe: 'ALL_TIME' },
-      orderBy: { totalEarnedInUSD: 'desc' },
-    });
-
     const emails = [];
 
     for (const winner of winners) {
       const listingWinnings = winner.user.Submission.filter(
-        (s) => s.isWinner && s.listing.isWinnersAnnounced,
+        (s) =>
+          s.isWinner &&
+          (s.listing.isWinnersAnnounced || s.listing.type === 'sponsorship'),
       ).reduce((sum, submission) => sum + (submission.rewardInUSD || 0), 0);
 
       const grantWinnings = winner.user.GrantApplication.filter(
@@ -70,11 +68,6 @@ export async function processNonSTWinners(id: string) {
 
       const totalEarnings = listingWinnings + grantWinnings;
 
-      const position =
-        allRankings.findIndex(
-          (ranking) => ranking.totalEarnedInUSD <= totalEarnings,
-        ) + 1;
-
       const emailHtml = await render(
         NonSTWinnersTemplate({
           name: winner.user.firstName,
@@ -82,7 +75,6 @@ export async function processNonSTWinners(id: string) {
           listingType,
           sponsorName,
           totalEarnings,
-          position,
           pocSocials: listing.pocSocials,
         }),
       );
