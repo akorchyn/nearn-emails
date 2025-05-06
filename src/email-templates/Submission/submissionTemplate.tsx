@@ -58,7 +58,7 @@ export const SubmissionTemplate = ({
           </p>
           <p style={styles.textWithMargin}>
             The sponsor will review all applications. We'll notify you by email
-            when the sponsor approve or reject your submission.
+            when the sponsor approves or rejects your submission.
           </p>
         </>
       );
