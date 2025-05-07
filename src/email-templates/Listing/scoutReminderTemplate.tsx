@@ -38,7 +38,7 @@ export const ScoutReminderTemplate = ({
         <a href={link} style={styles.link}>
           Click here
         </a>{' '}
-        to review the profiles of these chads and invite them. {invitesLeft}{' '}
+        to review the profiles of these talented contributors and invite them. {invitesLeft}{' '}
         invites left!
       </p>
 
