@@ -65,8 +65,7 @@ export const TalentReminderTemplate = ({
     <div style={styles.container}>
       <p style={styles.greetings}>{name ? 'Hello ' + name + ',' : 'Hello,'}</p>
       <p style={styles.textWithMargin}>
-        Contributing to web3 projects is the most reliable way to earn in global
-        standards. {PROJECT_NAME} is the easiest way to do it!
+      Contributing to web3 projects is one of the most impactful ways to improve your professional reputation.  {PROJECT_NAME} is the easiest way to do it!
       </p>
       <p style={styles.textWithMargin}>
         People like you have earned over {TVE} on {PROJECT_NAME}.

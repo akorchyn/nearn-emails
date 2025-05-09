@@ -21,8 +21,7 @@ export const DeadlineExceededbyWeekTemplate = ({
       <p style={styles.greetings}>Hey {name},</p>
       <p style={styles.textWithMargin}>
         It has been 7 days since the <strong>{listingName}</strong> listing
-        expired. Participants would be expecting the results to be out soon —
-        request you to publish the winners on {PROJECT_NAME} ASAP!
+        expired. We suggest you announce your selection/s on {PROJECT_NAME} soon!
       </p>
       <p style={styles.textWithMargin}>
         <a href={link} style={styles.link}>
