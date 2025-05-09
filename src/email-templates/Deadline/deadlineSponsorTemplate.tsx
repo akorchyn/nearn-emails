@@ -21,7 +21,7 @@ export const DeadlineSponsorTemplate = ({
       <p style={styles.greetings}>Hey {name},</p>
       <p style={styles.textWithMargin}>
         The deadline for your listing <strong>{listingName}</strong>
-        &nbsp; has expired. We suggest you check for payments due and announce your next sponsorship on {PROJECT_NAME} soon!
+        &nbsp; has expired. Check out {PROJECT_NAME} to announce your selections or start a new listing!
       </p>
       <p style={styles.textWithMargin}>
         <a href={link} style={styles.link}>
