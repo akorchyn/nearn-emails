@@ -21,7 +21,7 @@ export async function processTalentSubmission(id: string, userId: string) {
 
     const emailHtml = await render(
       SubmissionTemplate({
-        name: user.firstName!,
+        name: user.name!,
         listingName: listing.title,
         type: listing?.type as 'bounty' | 'project' | 'hackathon',
       }),

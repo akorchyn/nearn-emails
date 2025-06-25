@@ -28,7 +28,7 @@ export async function processApplicationLike() {
       likeCount: true,
       user: {
         select: {
-          firstName: true,
+          name: true,
           email: true,
         },
       },
@@ -62,7 +62,7 @@ export async function processApplicationLike() {
 
     const emailHtml = await render(
       ApplicationLikeTemplate({
-        name: application.user.firstName!,
+        name: application.user.name!,
         grantName: application.grant.title,
         newLikesCount,
         grantLink: `${basePath}/grants/${application.grant.slug}?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,

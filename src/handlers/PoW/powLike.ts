@@ -29,7 +29,7 @@ export async function processPoWLike() {
       title: true,
       user: {
         select: {
-          firstName: true,
+          name: true,
           email: true,
         },
       },
@@ -58,7 +58,7 @@ export async function processPoWLike() {
 
     const emailHtml = await render(
       PoWLikeTemplate({
-        name: proofOfWork.user.firstName!,
+        name: proofOfWork.user.name!,
         powName: proofOfWork.title,
         newLikesCount,
         feedLink: `${basePath}/feed?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,

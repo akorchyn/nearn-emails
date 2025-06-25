@@ -41,7 +41,7 @@ export async function processSubmissionLike() {
       isWinner: true,
       user: {
         select: {
-          firstName: true,
+          name: true,
           email: true,
         },
       },
@@ -82,7 +82,7 @@ export async function processSubmissionLike() {
 
     const emailHtml = await render(
       SubmissionLikeTemplate({
-        name: submission.user.firstName!,
+        name: submission.user.name!,
         listingName: submission.listing.title,
         newLikesCount,
         type,

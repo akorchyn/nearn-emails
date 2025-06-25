@@ -34,7 +34,7 @@ export async function processApplicationCompleted(id: string, userId: string) {
 
   const emailHtml = await render(
     ApplicationCompletedTemplate({
-      name: application.user.firstName!,
+      name: application.user.name!,
       sponsorName: application.grant.sponsor.name,
       applicationTitle: application.projectTitle,
       grantName: application.grant.title,

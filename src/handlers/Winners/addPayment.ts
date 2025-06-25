@@ -18,7 +18,7 @@ export async function processAddPayment(id: string) {
 
     const emailHtml = await render(
       PaymentReceivedTemplate({
-        name: submission.user.firstName!,
+        name: submission.user.name!,
         tokenName: isUSDbased ? submission.token : submission.listing.token,
         username: submission.user.username,
         amount: rewardAmount,

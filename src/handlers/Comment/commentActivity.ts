@@ -34,7 +34,7 @@ export async function processCommentActivity(
     return;
   }
 
-  let firstName: string | null = null;
+  let name: string | null = null;
   let userEmail: string | null = null;
   let userId: string | null = null;
   let isProject = false;
@@ -51,13 +51,13 @@ export async function processCommentActivity(
         user: {
           select: {
             email: true,
-            firstName: true,
+            name: true,
           },
         },
       },
     });
     if (submission) {
-      firstName = submission.user.firstName;
+      name = submission.user.name;
       userEmail = submission.user.email;
       userId = submission.userId;
       isProject = submission.listing.type === 'project';
@@ -71,13 +71,13 @@ export async function processCommentActivity(
         user: {
           select: {
             email: true,
-            firstName: true,
+            name: true,
           },
         },
       },
     });
     if (pow) {
-      firstName = pow.user.firstName;
+      name = pow.user.name;
       userEmail = pow.user.email;
       userId = pow.userId;
     }
@@ -90,13 +90,13 @@ export async function processCommentActivity(
         user: {
           select: {
             email: true,
-            firstName: true,
+            name: true,
           },
         },
       },
     });
     if (grantApplication) {
-      firstName = grantApplication.user.firstName;
+      name = grantApplication.user.name;
       userEmail = grantApplication.user.email;
       userId = grantApplication.userId;
     }
@@ -112,7 +112,7 @@ export async function processCommentActivity(
     if (userPreference) {
       const emailHtml = await render(
         CommentActivityTemplate({
-          name: firstName || 'Someone',
+          name: name || 'Someone',
           personName: capitalizeWords(personName),
           link,
           type,

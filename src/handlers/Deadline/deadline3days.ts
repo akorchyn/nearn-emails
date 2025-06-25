@@ -51,7 +51,7 @@ export async function processDeadlineThreeDays() {
     for (const sub of listingSubscriptions) {
       const emailHtml = await render(
         DeadlineThreeDaysTemplate({
-          name: sub?.User?.firstName!,
+          name: sub?.User?.name!,
           listingName: listing.title,
           link: `${basePath}/listing/${listing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
         }),

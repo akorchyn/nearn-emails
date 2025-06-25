@@ -20,7 +20,7 @@ export async function processTalentReminder() {
     },
     select: {
       id: true,
-      firstName: true,
+      name: true,
       email: true,
     },
   });
@@ -104,7 +104,7 @@ export async function processTalentReminder() {
 
     const emailHtml = await render(
       TalentReminderTemplate({
-        name: user.firstName,
+        name: user.name,
         TVE: totalTVEInMillions,
         listings: listings.map((listing) => ({
           id: listing.id,

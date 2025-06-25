@@ -146,7 +146,7 @@ export async function processCreateListing() {
       },
       select: {
         id: true,
-        firstName: true,
+        name: true,
         email: true,
         skills: true,
       },
@@ -173,7 +173,7 @@ export async function processCreateListing() {
 
         const emailHtml = await render(
           NewListingTemplate({
-            name: user.firstName!,
+            name: user.name!,
             link: `${basePath}/listing/${selectedListing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
             listing: selectedListing,
           }),
