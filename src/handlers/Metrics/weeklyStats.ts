@@ -72,13 +72,16 @@ export async function processWeeklyStats() {
       }),
 
       // sponsor accounts with at least 1 active listing
-      prisma.bounties.aggregate({
+      prisma.sponsors.count({
         where: {
-          status: 'OPEN',
-          isActive: true,
-        },
-        _count: {
-          sponsorId: true,
+          Bounties: {
+            some: {
+              deadline: {
+                gte: now.toDate(),
+              },
+              isPublished: true,
+            },
+          },
         },
       }),
 
@@ -161,7 +164,7 @@ export async function processWeeklyStats() {
       activeTalentUsers,
       sponsorAccounts,
       sponsorMembers,
-      activeSponsorAccounts: activeSponsorAccounts._count.sponsorId,
+      activeSponsorAccounts,
       totalListings,
       totalPublicListings,
       newListingsThisWeek,
