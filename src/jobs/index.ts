@@ -15,12 +15,6 @@ const scheduleJob = (time: string, type: EmailActionType) => {
 };
 
 const scheduleTelegramStats = () => {
-  // Run immediately at startup
-  console.log('Running initial telegram stats job at startup');
-  processWeeklyStats().catch((error) => {
-    console.error('Failed to process initial telegram stats:', error);
-  });
-
   cron.schedule('0 9 * * 1', async () => {
     console.log('Triggering weekly telegram stats job');
     try {
