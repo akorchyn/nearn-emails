@@ -45,8 +45,7 @@ export async function processWeeklyRoundup() {
       id: true,
       skills: true,
       email: true,
-      firstName: true,
-      lastName: true,
+      name: true,
       location: true,
     },
     orderBy: {
@@ -150,7 +149,7 @@ export async function processWeeklyRoundup() {
 
     const emailHtml = await render(
       WeeklyRoundupTemplate({
-        name: user.firstName!,
+        name: user.name!,
         listings: matchingListings.map((listing) => ({
           id: listing.id,
           title: listing.title,

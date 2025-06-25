@@ -45,7 +45,7 @@ export async function processCommentTag(
   if (user) {
     const emailHtml = await render(
       CommentTagTemplate({
-        name: user?.firstName!,
+        name: user?.name!,
         personName: capitalizeWords(personName),
         link,
       }),

@@ -45,7 +45,7 @@ export async function processScoutReminder() {
         poc: {
           select: {
             email: true,
-            firstName: true,
+            name: true,
           },
         },
         Scouts: {
@@ -77,7 +77,7 @@ export async function processScoutReminder() {
 
       const emailHtml = await render(
         ScoutReminderTemplate({
-          name: listing.poc.firstName || '',
+          name: listing.poc.name || '',
           link: `${basePath}/dashboard/listings/${listing.slug}/submissions/?scout=1&utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
           listingName: listing.title,
           type: listing.type,

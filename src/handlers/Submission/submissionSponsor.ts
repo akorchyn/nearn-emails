@@ -66,7 +66,7 @@ export async function processSponsorSubmissions() {
 
       const emailHtml = await render(
         SubmissionSponsorTemplate({
-          name: pocUser.firstName!,
+          name: pocUser.name!,
           listingName: listing.title,
           link: `${basePath}/dashboard/listings/${listing.slug}/submissions/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
           submissionCount: submissionCount,

@@ -52,7 +52,7 @@ export async function processDeadlineExceeded() {
 
     const emailHtml = await render(
       DeadlineSponsorTemplate({
-        name: listing.poc.firstName!,
+        name: listing.poc.name!,
         listingName: listing.title,
         link: `${basePath}/dashboard/listings/${listing?.slug}/submissions/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),

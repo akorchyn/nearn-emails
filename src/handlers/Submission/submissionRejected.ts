@@ -22,7 +22,7 @@ export async function processSubmissionRejected(id: string) {
   if (submission) {
     const emailHtml = await render(
       SubmissionRejectedTemplate({
-        name: submission.user.firstName!,
+        name: submission.user.name!,
         listingName: submission.listing.title,
         link: `${basePath}/listing/${submission.listing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),

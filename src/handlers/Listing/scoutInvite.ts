@@ -38,7 +38,7 @@ export async function processScoutInvite(id: string, userId: string) {
 
     const emailHtml = await render(
       ScoutInviteTemplate({
-        name: user.firstName!,
+        name: user.name!,
         listingName: listing.title,
         sponsorName: listing.sponsor.name,
         link: `${basePath}/listing/${listing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,

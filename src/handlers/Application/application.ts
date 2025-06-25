@@ -22,7 +22,7 @@ export async function processApplication(id: string, userId: string) {
           poc: {
             select: {
               email: true,
-              firstName: true,
+              name: true,
             },
           },
         },
@@ -48,7 +48,7 @@ export async function processApplication(id: string, userId: string) {
   if (userPreferenceSponsor) {
     const sponsorEmailHtml = await render(
       ApplicationSponsorTemplate({
-        name: grantApplication?.grant?.poc?.firstName!,
+        name: grantApplication?.grant?.poc?.name!,
         applicationTitle: grantApplication.projectTitle,
         grantName: grantApplication.grant.title,
         link: `${basePath}/dashboard/grants/${grantApplication.grant.slug}/applications/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
@@ -68,7 +68,7 @@ export async function processApplication(id: string, userId: string) {
   const sponsorName = grantApplication.grant.sponsor.name;
   const talentEmailHtml = await render(
     ApplicationTemplate({
-      name: user.firstName!,
+      name: user.name!,
       applicationTitle: grantApplication.projectTitle,
       sponsorName,
     }),

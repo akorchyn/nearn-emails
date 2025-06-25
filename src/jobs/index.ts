@@ -1,5 +1,6 @@
 import cron from 'node-cron';
 
+import { processWeeklyStats } from '../handlers/Metrics/weeklyStats';
 import { type EmailActionType } from '../types/EmailActionType';
 import { getPriority } from '../utils/getPriority';
 import { logicQueue } from '../utils/queue';
@@ -10,6 +11,23 @@ const scheduleJob = (time: string, type: EmailActionType) => {
   cron.schedule(time, () => {
     console.log(`Triggering ${type} email job`);
     logicQueue.add('processLogic', { type }, { priority });
+  });
+};
+
+const scheduleTelegramStats = () => {
+  // Run immediately at startup
+  console.log('Running initial telegram stats job at startup');
+  processWeeklyStats().catch((error) => {
+    console.error('Failed to process initial telegram stats:', error);
+  });
+
+  cron.schedule('0 9 * * 1', async () => {
+    console.log('Triggering weekly telegram stats job');
+    try {
+      await processWeeklyStats();
+    } catch (error) {
+      console.error('Failed to process weekly telegram stats:', error);
+    }
   });
 };
 
@@ -32,3 +50,5 @@ if (process.env.SERVER_ENV === 'development') {
 
 scheduleJob('0 12 * * 4', 'weeklyListingRoundup');
 scheduleJob('0 11 * * *', 'talentReminder');
+
+scheduleTelegramStats();

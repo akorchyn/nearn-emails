@@ -29,7 +29,7 @@ export async function processVerifiedStatus(
   }
 
   const verifiedStatusRender = VerifiedStatusTemplate({
-    name: listing.poc.firstName!,
+    name: listing.poc.name!,
     listingName: listing.title,
     listingType: listing.type,
     link: `${basePath}/listing/${listing.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,

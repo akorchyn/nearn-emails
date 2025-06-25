@@ -42,7 +42,7 @@ export async function processCommentReply(
   if (user) {
     const emailHtml = await render(
       CommentReplyTemplate({
-        name: user?.firstName!,
+        name: user?.name!,
         link,
       }),
     );

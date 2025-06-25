@@ -23,7 +23,7 @@ export async function processApplicationApproval(id: string, userId: string) {
   if (grantApplication && user) {
     const emailHtml = await render(
       ApplicationApprovedTemplate({
-        name: user.firstName!,
+        name: user.name!,
         applicationTitle: grantApplication.projectTitle,
         sponsorName: grantApplication.grant.sponsor.name,
       }),

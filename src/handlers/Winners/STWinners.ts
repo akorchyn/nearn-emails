@@ -31,7 +31,7 @@ export async function processSTWinners(id: string) {
     const emailPromises = winners.map(async (winner) => {
       const emailHtml = await render(
         STWinnersTemplate({
-          name: winner.user.firstName,
+          name: winner.user.name,
           listingName,
           listingType,
         }),

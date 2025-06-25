@@ -27,7 +27,7 @@ export async function processCommentSponsor(id: string, userId: string) {
 
     const emailHtml = await render(
       CommentSponsorTemplate({
-        name: pocUser.firstName!,
+        name: pocUser.name!,
         listingName: listing.title,
         link: `${basePath}/listing/${listing?.slug}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),

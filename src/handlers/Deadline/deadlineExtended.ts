@@ -38,7 +38,7 @@ export async function processDeadlineExtended(id: string) {
     if (submission.user && !emailMap.has(submission.user.email)) {
       emailMap.set(submission.user.email, {
         email: submission.user.email,
-        name: submission.user.firstName || '',
+        name: submission.user.name || '',
       });
     }
   });
@@ -47,7 +47,7 @@ export async function processDeadlineExtended(id: string) {
     if (subscriber.User && !emailMap.has(subscriber.User.email)) {
       emailMap.set(subscriber.User.email, {
         email: subscriber.User.email,
-        name: subscriber.User.firstName || '',
+        name: subscriber.User.name || '',
       });
     }
   });

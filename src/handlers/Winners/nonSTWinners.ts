@@ -70,7 +70,7 @@ export async function processNonSTWinners(id: string) {
 
       const emailHtml = await render(
         NonSTWinnersTemplate({
-          name: winner.user.firstName,
+          name: winner.user.name,
           listingName,
           listingType,
           sponsorName,

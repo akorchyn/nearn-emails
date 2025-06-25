@@ -53,7 +53,7 @@ export async function processDeadlineExceededWeek() {
 
     const emailHtml = await render(
       DeadlineExceededbyWeekTemplate({
-        name: listing.poc.firstName!,
+        name: listing.poc.name!,
         listingName: listing.title,
         link: `${basePath}/dashboard/listings/${listing?.slug}/submissions/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),
