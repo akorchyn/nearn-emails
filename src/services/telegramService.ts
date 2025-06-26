@@ -85,7 +85,9 @@ export class TelegramService {
 
 💬 <b>Comments:</b>
 • Total comments: <b>${stats.totalComments.toLocaleString()}</b>
+• User comments: <b>${stats.notAutomatedComments.toLocaleString()}</b>
 • New comments for the last 7 days: <b>${stats.newCommentsThisWeek.toLocaleString()}</b>
+• New user comments for the last 7 days: <b>${stats.notAutomatedCommentsThisWeek.toLocaleString()}</b>
 
 #metrics`.trim();
   }

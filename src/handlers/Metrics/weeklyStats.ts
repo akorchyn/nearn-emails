@@ -129,6 +129,21 @@ export async function processWeeklyStats() {
       },
     });
 
+    const notAutomatedComments = await prisma.comment.count({
+      where: {
+        type: { not: { in: ['DEADLINE_EXTENSION', 'WINNER_ANNOUNCEMENT'] } },
+      },
+    });
+
+    const notAutomatedCommentsThisWeek = await prisma.comment.count({
+      where: {
+        createdAt: {
+          gte: weekAgo.toDate(),
+        },
+        type: { not: { in: ['DEADLINE_EXTENSION', 'WINNER_ANNOUNCEMENT'] } },
+      },
+    });
+
     // Total submissions
     const totalSubmissions = await prisma.submission.count();
 
@@ -156,6 +171,8 @@ export async function processWeeklyStats() {
       newCommentsThisWeek,
       totalSubmissions,
       newSubmissionsThisWeek,
+      notAutomatedComments,
+      notAutomatedCommentsThisWeek,
     };
 
     // Send to telegram
