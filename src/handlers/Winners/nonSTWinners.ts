@@ -46,6 +46,11 @@ export async function processNonSTWinners(id: string) {
   });
 
   if (listing) {
+    if (listing.type === 'sponsorship') {
+      // TODO: implement incremental notifications about approved submissions rather than all at once
+      return;
+    }
+
     const sponsorName = listing.sponsor.name;
     const listingType = getListingTypeLabel(listing.type);
     const listingName = listing.title;
