@@ -13,6 +13,11 @@ export async function processAnnounceWinners(id: string) {
   });
 
   if (listing) {
+    if (listing.type === 'sponsorship') {
+      // TODO: implement incremental notifications about approved submissions rather than all at once
+      return;
+    }
+
     const submissions = await prisma.submission.findMany({
       where: {
         listingId: id,
