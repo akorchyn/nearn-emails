@@ -39,6 +39,11 @@ export async function processSponsorSubmissions() {
           },
         },
       },
+      sponsor: {
+        select: {
+          slug: true,
+        },
+      },
     },
   });
 
@@ -70,7 +75,7 @@ export async function processSponsorSubmissions() {
           listingName: listing.title,
           link: `${basePath}/dashboard/listings/${listing.slug}/submissions/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
           submissionCount: submissionCount,
-          listingLink: `${basePath}/listing/${listing.slug}`,
+          listingLink: `${basePath}/${listing.sponsor.slug}/${listing.sequentialId}`,
           listingType: listing.type,
         }),
       );
