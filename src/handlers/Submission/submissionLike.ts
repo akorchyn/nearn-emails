@@ -7,6 +7,7 @@ import { ceoEmail } from '../../constants/emails';
 import { PROJECT_NAME } from '../../constants/project';
 import { SubmissionLikeTemplate } from '../../email-templates/Submission/submissionLikeTemplate';
 import { prisma } from '../../prisma';
+import { getListingTypeLabel } from '../../utils/getListingTypeLabel';
 import { getUserEmailPreference } from '../../utils/getUserEmailPreference';
 
 function createFeedCardCopy(type: BountyType, isWinnersAnnounced: boolean) {
@@ -15,8 +16,7 @@ function createFeedCardCopy(type: BountyType, isWinnersAnnounced: boolean) {
     : type === 'project'
       ? 'Application'
       : 'Submission';
-  const prefix =
-    type === 'project' ? 'Project' : type === 'bounty' ? 'Bounty' : 'Hackathon';
+  const prefix = getListingTypeLabel(type);
   return `${prefix} ${status}`;
 }
 
@@ -36,6 +36,7 @@ export async function processSubmissionLike() {
     },
     select: {
       userId: true,
+      sequentialId: true,
       like: true,
       likeCount: true,
       isWinner: true,
@@ -48,6 +49,12 @@ export async function processSubmissionLike() {
       listing: {
         select: {
           title: true,
+          sequentialId: true,
+          sponsor: {
+            select: {
+              slug: true,
+            },
+          },
           isWinnersAnnounced: true,
           type: true,
           slug: true,
@@ -86,7 +93,7 @@ export async function processSubmissionLike() {
         listingName: submission.listing.title,
         newLikesCount,
         type,
-        listingLink: `${basePath}/listing/${submission.listing.slug}/submission/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
+        listingLink: `${basePath}/${submission.listing.sponsor.slug}/${submission.listing.sequentialId}/${submission.sequentialId}/?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
         feedLink: `${basePath}/feed?utm_source=${PROJECT_NAME}&utm_medium=email&utm_campaign=notifications`,
       }),
     );
